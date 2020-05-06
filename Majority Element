@@ -1,0 +1,20 @@
+// DIFFICULTY    EASY
+// HASHMAP
+// O(N)    N = SIZE_OF_VECTOR
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        map<int,int>mp;
+        int cur,mx=-1;
+        for(auto u:nums)
+        {
+            mp[u]++;
+            if(mp[u]>mx)
+            {   mx =mp[u];
+                cur=u;
+            }
+        }
+        return cur;
+        
+    }
+};

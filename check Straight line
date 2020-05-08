@@ -1,0 +1,32 @@
+//simple line equation is used y = mx+c
+
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>>& coord) {
+        if(coord.size()==2)     // two points always make a line
+            return true;
+        set<int>s1,s2;
+        for(int i=0;i<coord.size();i++)
+        {
+            s1.insert(coord[i][0]);
+            s2.insert(coord[i][1]);
+        }
+        if(s1.size()==1)    // line is || to y-axis
+            return true;  
+        if(s2.size()==1)    // line is || to x-axis
+            return true;
+        int m;      
+        if(coord[1][0]-coord[0][0])
+            m =(coord[1][1]-coord[0][1])/(coord[1][0]-coord[0][0]);   // m = slope of line
+        else
+            return false;
+        int c = coord[0][1]-m*coord[0][0];      // c = constant in y=mx+c
+        for(int i=2;i<coord.size();i++)
+        {
+            if(m*coord[i][0]+c != coord[i][1])    //checking other points for this line equation
+                return false;
+        }
+        return true;
+        
+    }
+};

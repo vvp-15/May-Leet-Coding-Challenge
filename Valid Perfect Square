@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool isPerfectSquare(int n) {
+    for(long long i=1;i*i<=n;i++)
+	{
+		if((n%i==0)&&(n/i==i))
+		{
+			// cout<<i;
+			return true;
+		}
+	}
+	return false;
+    }
+};

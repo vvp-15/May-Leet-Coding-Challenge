@@ -1,0 +1,25 @@
+// solved using simple recursion 
+// few corner cases have has to be properly analysed
+
+class Solution {
+public:
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+        int oldColor = image[sr][sc];
+        if(oldColor==newColor)          // IF OLD COLOR IS SAME AS NEW COLOR THEN NO COLOR WILL CHANGE
+            return image;
+        floodFill(image,sr,sc,newColor,oldColor);
+        return image;
+    }
+    void floodFill(vector<vector<int>>& image,int x,int y,int newColor,int oldColor)
+    {
+        if(x>image.size()-1 || y>image[0].size()-1 || x<0 || y<0)return;                // if points get out of range then return(base case)
+        if(image[x][y]==oldColor)image[x][y]=newColor;
+        else{
+            return;
+        }
+        floodFill(image,x+1,y,newColor,oldColor);
+        floodFill(image,x,y+1,newColor,oldColor);
+        floodFill(image,x-1,y,newColor,oldColor);
+        floodFill(image,x,y-1,newColor,oldColor);
+    }
+};

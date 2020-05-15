@@ -26,7 +26,8 @@ public:
         Trie* curr = this;
         for(int i=0;i<word.length();i++){
             curr = curr->children[word[i]];
-        if(curr == nullptr)return false; 
+        if(curr == nullptr)
+        return false; 
         }
         return curr->isLeaf;
     }

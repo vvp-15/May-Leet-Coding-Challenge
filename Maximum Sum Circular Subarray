@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& a) {
+        int kadaneMax = kadane(a);
+        // cout<<kadaneMax<<" ";
+        int sum=0;
+        for(int i=0;i<a.size();i++)
+        {
+            sum+=a[i];
+            a[i]=-a[i];
+        }
+        int sum1 = kadane(a);
+        sum=sum+sum1;
+        if(sum!=0)
+        return max(sum,kadaneMax);
+        return kadaneMax;
+    }
+    int kadane(vector<int>&a)
+    {
+        int n = a.size();
+        int x=0,mx=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            x+=a[i];
+            if(x<a[i])x=a[i];
+            // if(x<0)x=0;
+            mx=max(mx,x);
+            // cout<<mx<<" ";
+        }
+        return mx;
+    }
+};

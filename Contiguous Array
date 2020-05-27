@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findMaxLength(vector<int>& nums) {
+        map<int,int>mp;
+        int sum=0,maxv=0;
+        for(int i=1;i<=nums.size();i++)
+        {
+            sum+=(nums[i-1])?1:-1;
+            // cout<<sum<<" ";
+            if(sum==0)
+            {
+                maxv=i;
+                continue;
+            }
+            if(!mp[sum])
+                mp[sum]=i;
+            else{
+               maxv=max(maxv,i-mp[sum]); 
+                // cout<<maxv<<" ";
+            }
+        }
+        return maxv;
+    }
+    
+};

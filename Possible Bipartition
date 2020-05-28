@@ -1,0 +1,35 @@
+class Solution {
+public:
+    bool ans;   
+    void dfs(vector<vector<int>>& adj,vector<int>& val,int x,int p=-1,int u=0)
+    {   
+        if(val[x]==-1)val[x]=u;
+        else{
+            if(val[x]==val[p])
+                ans=true;return;
+        }
+        for(auto v:adj[x])
+        {
+            if(v!=p)
+            {  
+                dfs(adj,val,v,x,1-val[x]);
+            }
+        }
+    }
+    bool possibleBipartition(int N, vector<vector<int>>& dislikes) {
+        vector<int>val(N+1,-1);
+        vector<vector<int> >adj(N+1);
+        for(auto u : dislikes)
+        {   
+            adj[u[0]].push_back(u[1]);
+            adj[u[1]].push_back(u[0]);
+        }
+        for(int i=1;i<=N;i++)
+        {   if(ans){break;}
+            if(val[i]==-1)
+                dfs(adj,val,i);
+        }
+        // cout<<ans;
+        return !ans;
+    }
+};

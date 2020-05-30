@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<vector<int>> kClosest(vector<vector<int>>& points, int K) {
+        vector<vector<int>>v;
+        vector<int>temp(2,0);
+        set<pair<int,pair<int,int>>>s;
+        for(auto u:points){
+            int sum = u[0]*u[0]+u[1]*u[1];
+            s.insert({sum,{u[0],u[1]}});
+        }
+        int k=1;
+        for(auto u:s){
+            temp[0] = u.second.first;
+            temp[1] = u.second.second;
+            v.push_back(temp);
+            k++;
+            if(k>K)break;
+        }
+        return v;
+    }
+};
